@@ -3,31 +3,26 @@
  */
 package funcionesParaPalabras;
 
-import java.text.Normalizer;
-import java.util.Iterator;
-
 /**
  * 
  */
 public class CasiPalindromos {
-//	String palabra;
-//	/**
-//	 * 
-//	 */
-//	public CasiPalindromos(String palabrainicial) {
-//	this.palabra= palabrainicial;
-//	}
+	String str;
+	/**
+	 * 
+	 */
+	public CasiPalindromos(String palabrainicial) {
+	this.str= palabrainicial;
+	}
 	
 	
-	static String normalizarPalabra(String palabra) {
+	public static String normalizarPalabra(String palabra) {
 		return palabra.toLowerCase();
 	 };
 	 
-	 boolean esPalindromo(String palabra1,String palabra2) {
-		 return  (palabra1==palabra2);
-	 };
 	 
-	static String invertirPalabra(String palabra) {
+	 
+	public static String invertirPalabra(String palabra) {
 	        // conversion from String object to StringBuffer
 	        StringBuffer sbr = new StringBuffer(palabra);
 	        // To reverse the string
@@ -36,10 +31,10 @@ public class CasiPalindromos {
 	 };
 	 
 	 
-	static int revisarDiferencias(String palabra1,String palabra2) {
+	public static int revisarDiferencias(String palabra,String palabraInvertida) {
 		int diferencias=0;
-		for (int i = 0; i < palabra1.length(); i++) { 
-			if (palabra1.charAt(i)!=palabra2.charAt(i)) {
+		for (int i = 0; i < palabra.length(); i++) { 
+			if (palabra.charAt(i)!=palabraInvertida.charAt(i)) {
 				diferencias++;
 			}
 		}
@@ -48,13 +43,28 @@ public class CasiPalindromos {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		String palabra= "Oso";
-		normalizarPalabra(palabra);
-		invertirPalabra();
+	 public static boolean esCasiPalindromo(String palabra) {
+		String palabraNormalizada= normalizarPalabra(palabra.replaceAll("[, ]",""));
+		String palabraInvertidaNormalizada=invertirPalabra(palabraNormalizada);
 		
-
+		if(revisarDiferencias(palabraNormalizada, palabraInvertidaNormalizada)==2) {
+				System.out.println(palabra+" es casiPalindromo");
+				return true;
+			}
+		
+		return false;
 	}
+	 
+	 public boolean esCasiPalindromo() {
+			String palabraNormalizada= normalizarPalabra(str.replaceAll("[, ]",""));
+			String palabraInvertidaNormalizada=invertirPalabra(palabraNormalizada);
+			
+			if(revisarDiferencias(palabraNormalizada, palabraInvertidaNormalizada)==2) {
+					System.out.println(str+" es casiPalindromo");
+					return true;
+				}
+			
+			return false;
+		}
 
 }
-
